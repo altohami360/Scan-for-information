@@ -25,7 +25,7 @@ Route::get('information/{id}', [InformationController::class, 'show'])->name('in
 
 
 Route::get('download', function () {
-    QrCode::margin(1)->format('png')->size(200)->generate(route('my-info', auth()->user()->id), public_path('uploads\images\qrcode.png'));
+    QrCode::margin(1)->format('png')->size(200)->generate(route('information', auth()->user()->id), public_path('uploads\images\qrcode.png'));
     return response()->download(public_path('uploads\images\qrcode.png'));
 })->name('download');
 
