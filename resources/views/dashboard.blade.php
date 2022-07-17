@@ -27,7 +27,7 @@
                             {{-- <a href="{{route('download')}}"
                                 class="m-t-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 Download</a> --}}
-
+                        
                         <a href="{{route('download')}}" class="tracking-wide text-bg text-indigo-500 font-semibold hover:underline">
                             Download My QR Code
                         </a>
