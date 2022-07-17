@@ -14,12 +14,14 @@ class DownloadController extends Controller
 {
     public function download(Request $request)
     {
-
         QrCode::margin(1)->format('png')->size(200)->generate(route('information', auth()->user()->id), public_path('uploads\images\qrcode.png'));
+        return Storage::download(public_path('uploads\images\qrcode.png'));
 
         $path = Storage::disk('images')->path('uploads\images\qrcode.png');
-        // $content = file_get_contents($path);
+        $content = file_get_contents($path);
 
-        return response()->download($path, 'qrcode.png', ['Content-Type' => mime_content_type($path)]);
+        // return $path = Storage::disk('images')->download();
+
+        return response()->download($content, 'qrcode.png', ['Content-Type' => mime_content_type($path)]);
     }
 }

@@ -17,8 +17,9 @@
             <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                 <div class="md:flex p-4">
                     <div class="md:shrink-0 flex items-center justify-center">
-                        {!!QrCode::format('svg')->size(200)->generate(route('information', auth()->user()->id))!!}
+                        {{-- {!!QrCode::format('svg')->size(200)->generate(route('information', auth()->user()->id))!!} --}}
                         {{-- <img src="{{ asset('uploads\images\qrcode.png') }}"> --}}
+                        <img src="{{ asset('uploads\images\qrcode.png') }}">
                     </div>
                     <div class="p-8">
                         <div class="block mt-1 text-lg leading-tight font-medium text-black">HI {{ auth()->user()->name }}</div>
@@ -27,10 +28,15 @@
                             {{-- <a href="{{route('download')}}"
                                 class="m-t-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 Download</a> --}}
-                        
-                        <a href="{{route('download')}}" class="tracking-wide text-bg text-indigo-500 font-semibold hover:underline">
+                        <a 
+                            href="{{ asset('uploads\images\qrcode.png') }}" 
+                            class="tracking-wide text-bg text-indigo-500 font-semibold hover:underline"
+                            download>
                             Download My QR Code
                         </a>
+                        {{-- <a href="{{route('download')}}" class="tracking-wide text-bg text-indigo-500 font-semibold hover:underline">
+                            Download My QR Code
+                        </a> --}}
                     </div>
                 </div>
             </div>
