@@ -15,19 +15,20 @@ class DownloadController extends Controller
     public function download(Request $request)
     {
 
-        $path = 'uploads\images';
-        $name = 'qrcode.png';
-        $file = 'uploads\images\qrcode.png';
+        // $path = 'uploads\images';
+        // $name = 'qrcode.png';
+        // $file = 'uploads\images\qrcode.png';
+        // $headers = ['Content-Type: image/png'];
+        // if (File::exists(public_path($file))) {
+        //     unlink(public_path($file));
+        // } 
 
-        if (File::exists(public_path($file))) {
-            unlink(public_path($file));
+        $file = public_path() . "/uploads\images\qrcode.png";
+
+        $headers = ['Content-Type: image/jpeg'];
+
+        if (file_exists($file)) {
+            return response()->download($file, 'QR-code.png', $headers);
         }
-
-        // Browsershot::url(URL::current())
-        // ->setScreenshotType('jpeg', 100)
-        // ->save('qr.jpeg');
-
-        QrCode::margin(1)->format('png')->size(200)->generate(route('information', auth()->user()->id), public_path($file));
-        return response()->download(public_path($file), $name);
     }
 }
