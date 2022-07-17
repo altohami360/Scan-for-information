@@ -21,9 +21,9 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
-Route::get('download', [DownloadController::class, 'download'])->name('download');
-
 Route::get('information/{id}', [InformationController::class, 'show'])->name('information');
+
+Route::get('download', [DownloadController::class, 'download'])->middleware(['auth'])->name('download');
 
 Route::get('/dashboard', [HomeController::class, 'home'])->middleware(['auth'])->name('dashboard');
 
