@@ -18,7 +18,8 @@ class HomeController extends Controller
             ->format('png')
             ->size(200)
             ->generate(route('information', auth()->user()->id), public_path($path));
-
+        // return asset(public_path($path));
+        
         return view('dashboard', compact('path'));
     }
 }
