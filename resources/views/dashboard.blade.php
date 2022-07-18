@@ -18,7 +18,7 @@
                 <div class="md:flex p-4">
                     <div class="md:shrink-0 flex items-center justify-center">
                         {{-- {!!QrCode::format('svg')->size(200)->generate(route('information', auth()->user()->id))!!} --}}
-                        <img src="{{ asset('uploads\images\\' . auth()->user()->id . '.png') }}">
+                        <img src="{{ asset('uploads\images\qrcode.png') }}">
                         {{-- <img src="{{ asset($path) }}" alt="My QR code"> --}}
                     </div>
                     <div class="p-8">

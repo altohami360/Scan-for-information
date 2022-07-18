@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function home()
     {
 
-        $path = 'uploads\images\\' . auth()->user()->id . '.png';
+        $path = 'uploads\images\qrcode.png';
 
         QrCode::margin(1)
             ->format('png')
