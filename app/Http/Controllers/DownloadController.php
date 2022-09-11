@@ -15,7 +15,7 @@ class DownloadController extends Controller
     public function download(Request $request)
     {
         $user_id = auth()->user()->id;
-        $img_path = 'uploads\images\\' . $user_id . 'qrcode.png';
+        $img_path = '' . $user_id . 'qrcode.png';
 
         QrCode::margin(1)->format('png')->size(200)->generate(route('information', $user_id), public_path($img_path));
 
@@ -24,6 +24,7 @@ class DownloadController extends Controller
         $fileName = $user_id . 'qrcode.png';
         $headers = ['Content-Type' => mime_content_type($img_path)];
 
+        // return Storage::download($filePath);
         return response()->download($filePath, $fileName, $headers)->deleteFileAfterSend();
     }
 }
