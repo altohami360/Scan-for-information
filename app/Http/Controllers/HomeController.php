@@ -12,6 +12,9 @@ class HomeController extends Controller
     public function home()
     {
 
+        
+        $qr_code = QrCode::format('svg')->size(200)->generate(route('information', auth()->user()->id));
+        // return $qr_code;
         // $path = 'uploads\images\qrcode.png';
 
         // QrCode::margin(1)
@@ -20,6 +23,6 @@ class HomeController extends Controller
         //     ->generate(route('information', auth()->user()->id), public_path($path));
         // return asset(public_path($path));
         
-        return view('dashboard');
+        return view('dashboard', compact('qr_code'));
     }
 }
