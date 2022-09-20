@@ -3,6 +3,7 @@
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -17,14 +18,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/dashboard');
+Route::redirect('/', 'home');
+
+Route::middleware(['auth'])->group(function() {
+
+    Route::get('download', [DownloadController::class, 'download'])->name('download');
+    
+    Route::get('home', [HomeController::class, 'home'])->name('home');
+    
+    Route::put('profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('profile', [ProfileController::class, 'profile'])->name('profile');
+
 });
 
 Route::get('information/{id}', [InformationController::class, 'show'])->name('information');
-
-Route::get('download', [DownloadController::class, 'download'])->middleware(['auth'])->name('download');
-
-Route::get('/dashboard', [HomeController::class, 'home'])->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

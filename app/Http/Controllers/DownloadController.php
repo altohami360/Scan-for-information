@@ -2,29 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\GenerateQrCodeTrait;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\URL;
-use Spatie\Browsershot\Browsershot;
 
 class DownloadController extends Controller
 {
+    use GenerateQrCodeTrait;
+
     public function download(Request $request)
     {
-        $user_id = auth()->user()->id;
-        $img_path = '' . $user_id . 'qrcode.png';
 
-        QrCode::margin(1)->format('png')->size(200)->generate(route('information', $user_id), public_path($img_path));
+        $img_name = auth()->user()->id . '-qrcode.png';
 
+        $img_path = $this->generateQrCodePNG($img_name);
         
-        $filePath = public_path($img_path);
-        $fileName = $user_id . 'qrcode.png';
         $headers = ['Content-Type' => mime_content_type($img_path)];
 
-        // return Storage::download($filePath);
-        return response()->download($filePath, $fileName, $headers)->deleteFileAfterSend();
+        return response()->download($img_path, $img_name, $headers)->deleteFileAfterSend();
     }
 }

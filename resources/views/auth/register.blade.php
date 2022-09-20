@@ -26,7 +26,7 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
-            <!-- Address -->
+            {{-- <!-- Address -->
             <div class="mt-4">
                 <x-label for="address" :value="__('Address')" />
             
@@ -38,7 +38,7 @@
                 <x-label for="birthday" :value="__('Birthday')" />
             
                 <x-input id="birthday" class="block mt-1 w-full" type="date" name="birthday" :value="old('birthday')" required />
-            </div>
+            </div> --}}
 
             <!-- Password -->
             <div class="mt-4">
